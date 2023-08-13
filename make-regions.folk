@@ -1,0 +1,4 @@
+When /someone/ wishes region /r/ is /verbed/ /x/ {
+  Claim $r has region $r
+  Wish $r is $verbed $x
+}
