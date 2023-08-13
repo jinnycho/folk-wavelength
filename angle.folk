@@ -1,0 +1,34 @@
+namespace import ::math::linearalgebra::unitLengthVector
+
+When /x/ wishes wavelength button 1 is pressed {
+  When $x has region /r/ {
+    When the angle clue is /angle/ {
+      set r [region move $r up 100px]
+      set r [region move $r right 20px]
+      set r [region scale $r 0.5]
+      set r [region scale $r width 2]
+      set r [region rotate $r 0.025]
+      Display::circle {*}[region top $r] 0 200 darkgreen
+      # set angle [+ [- $angle 3.1415] [/ 3.1415 3]]
+      # set angle 3.1415
+      set angle [- $angle [/ 3.1415 6]]
+      set angle [- $angle 0.1]
+      set angle [- $angle 3.1415]
+
+      set t [region top $r]
+      set tl [lindex [region vertices $r] 0]
+     
+      set anglevec [vec2 rotate [sub $tl $t] $angle]
+      set anglevec [scale 200 [unitLengthVector $anglevec]]
+
+    Wish display runs [list \
+      Display::stroke [list $t [add $t $anglevec]] 3 white \
+      ] on layer 3
+
+    Wish display runs [list \
+          Display::fillQuad {*}[region vertices $r] black \
+      ] on layer 2
+    }
+  }
+}
+

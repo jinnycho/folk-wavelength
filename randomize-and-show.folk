@@ -1,8 +1,10 @@
 When the wavelength prompts are /prompts/ {
   When /someone/ wishes wavelength button 2 is pressed {
     set prompt [lindex $prompts [round [* [rand] 244]]]
+    set angle [rand * 3.14189265358979323846264]
     Commit {
       Claim the wavelength prompt is $prompt
+      Commit the angle clue is $angle
     }
   }
 }
