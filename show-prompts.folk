@@ -29,6 +29,5 @@ When the wavelength prompt is /prompt/ {
     set r2 [region scale $r2 50%]
     Wish region $r2 is labelled [lindex $prompt 1]
     Wish region $r2 is outlined blue
-
   }
 } 
