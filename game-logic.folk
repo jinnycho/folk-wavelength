@@ -32,3 +32,29 @@ When /x/ wishes wavelength button 1 is pressed {
   }
 }
 
+When /someone/ wishes wavelength button 2 is pressed {
+  When the wavelength prompts are /prompts/ {
+    set prompt [lindex $prompts [round [* [rand] 244]]]
+    set angle [rand * 3.14189265358979323846264]
+    Commit {
+      Claim the wavelength prompt is $prompt
+      Commit the angle clue is $angle
+    }
+  }
+}
+
+When the wavelength prompt is /prompt/ {
+  When $this has region /r/ {
+    set r1 [region move $r up 400px]
+    set r1 [region move $r1 left 200px]
+    set r1 [region scale $r1 50%]
+    Wish region $r1 is labelled [lindex $prompt 0]
+    Wish region $r1 is outlined red
+
+    set r2 [region move $r up 400px]
+    set r2 [region move $r2 right 200px]
+    set r2 [region scale $r2 50%]
+    Wish region $r2 is labelled [lindex $prompt 1]
+    Wish region $r2 is outlined blue
+  }
+} 
