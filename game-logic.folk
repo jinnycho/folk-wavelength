@@ -3,14 +3,11 @@ namespace import ::math::linearalgebra::unitLengthVector
 When /x/ wishes wavelength button 1 is pressed {
   When $x has region /r/ {
     When the angle clue is /angle/ {
-      set r [region move $r up 100px]
-      set r [region move $r right 20px]
+      set r [region move $r up 420px]
+      set r [region move $r right 124px]
       set r [region scale $r 0.5]
       set r [region scale $r width 2]
-      set r [region rotate $r 0.025]
-      Display::circle {*}[region top $r] 0 200 darkgreen
-      # set angle [+ [- $angle 3.1415] [/ 3.1415 3]]
-      # set angle 3.1415
+      set r [region rotate $r -0.03]
       set angle [- $angle [/ 3.1415 6]]
       set angle [- $angle 0.1]
       set angle [- $angle 3.1415]
@@ -21,39 +18,42 @@ When /x/ wishes wavelength button 1 is pressed {
       set anglevec [vec2 rotate [sub $tl $t] $angle]
       set anglevec [scale 200 [unitLengthVector $anglevec]]
 
-    Wish display runs [list \
-      Display::stroke [list $t [add $t $anglevec]] 3 white \
+      Wish display runs [list \
+        Display::stroke [list $t [add $t $anglevec]] 3 white \
       ] on layer 3
-
-    Wish display runs [list \
-          Display::fillQuad {*}[region vertices $r] black \
-      ] on layer 2
-    }
   }
 }
 
 When /someone/ wishes wavelength button 2 is pressed {
   When the wavelength prompts are /prompts/ {
-    set prompt [lindex $prompts [round [* [rand] 244]]]
-    set angle [rand * 3.14189265358979323846264]
+    set prompt [lindex $prompts [round [expr { rand() * 244}]]]
+    set angle [expr { rand() * 3.14189265358979323846264}]
     Commit {
       Claim the wavelength prompt is $prompt
-      Commit the angle clue is $angle
+      Claim the angle clue is $angle
     }
   }
 }
 
 When the wavelength prompt is /prompt/ {
-  When $this has region /r/ {
-    set r1 [region move $r up 400px]
-    set r1 [region move $r1 left 200px]
-    set r1 [region scale $r1 50%]
+  When 507 has region /r/ {
+    set yoffset 220px
+    set xoffset 700px
+    set ydistance 175px
+    set scale 40% 
+    set r1 $r
+    set r1 [region move $r1 down $yoffset ]
+    set r1 [region move $r1 left $xoffset ]
+    set r1 [region move $r1 left $ydistance]
+    set r1 [region scale $r1 $scale]
     Wish region $r1 is labelled [lindex $prompt 0]
     Wish region $r1 is outlined red
 
-    set r2 [region move $r up 400px]
-    set r2 [region move $r2 right 200px]
-    set r2 [region scale $r2 50%]
+    set r2 $r
+    set r2 [region move $r2 down $yoffset ]
+    set r2 [region move $r2 left $xoffset]
+    set r2 [region move $r2 right $ydistance]
+    set r2 [region scale $r2 $scale]
     Wish region $r2 is labelled [lindex $prompt 1]
     Wish region $r2 is outlined blue
   }
