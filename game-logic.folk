@@ -21,6 +21,7 @@ When /x/ wishes wavelength button 1 is pressed {
       Wish display runs [list \
         Display::stroke [list $t [add $t $anglevec]] 3 white \
       ] on layer 3
+    }
   }
 }
 
@@ -36,7 +37,7 @@ When /someone/ wishes wavelength button 2 is pressed {
 }
 
 When the wavelength prompt is /prompt/ {
-  When 507 has region /r/ {
+  When $this has region /r/ {
     set yoffset 220px
     set xoffset 700px
     set ydistance 175px
@@ -58,3 +59,4 @@ When the wavelength prompt is /prompt/ {
     Wish region $r2 is outlined blue
   }
 } 
+
